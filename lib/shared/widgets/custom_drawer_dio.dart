@@ -23,24 +23,15 @@ class CustomDrawerDio extends StatelessWidget {
                     builder: (BuildContext bc) {
                       return Wrap(
                         children: [
-                          // SizedBox(height: 25),
-                          // Center(
-                          //   child: Text(
-                          //     "Opções",
-                          //     style: TextStyle(
-                          //         fontSize: 20, fontWeight: FontWeight.bold),
-                          //   ),
-                          // ),
-                          // Divider(color: Colors.black, thickness: 3, height: 5),
                           ListTile(
                             onTap: () {
                               Navigator.pop(context);
                             },
-                            title: Text("Câmera"),
-                            leading: Icon(Icons.camera_alt),
+                            title: const Text("Câmera"),
+                            leading: const Icon(Icons.camera_alt),
                             iconColor: Colors.black,
                           ),
-                          ListTile(
+                          const ListTile(
                             title: Text("Galeria"),
                             leading: Icon(Icons.screen_share),
                             iconColor: Colors.black,
@@ -106,102 +97,135 @@ class CustomDrawerDio extends StatelessWidget {
                               )),
                         ),
                         const SizedBox(height: 15),
-                        SizedBox(
-                          width: double.infinity,
-                          child: TextButton(
-                              onPressed: () {
-                                Navigator.pop(context);
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            const DadosCadastrais()));
-                              },
-                              style: ButtonStyle(
-                                  backgroundColor:
-                                      MaterialStateProperty.all(Colors.blue),
-                                  shape: MaterialStateProperty.all(
-                                      RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(10)))),
-                              child: const Row(
-                                children: [
-                                  SizedBox(width: 15),
-                                  Icon(
-                                    Icons.person,
-                                    color: Colors.white,
-                                  ),
-                                  SizedBox(width: 15),
-                                  Text(
-                                    "Dados Cadastrais",
-                                    style: TextStyle(color: Colors.white),
-                                    textAlign: TextAlign.center,
-                                  ),
-                                ],
-                              )),
+                        InkWell(
+                          child: Container(
+                            decoration: BoxDecoration(
+                                color: Colors.blue,
+                                borderRadius: BorderRadius.circular(10)),
+                            padding: const EdgeInsets.all(10.0),
+                            child: const Row(
+                              children: [
+                                SizedBox(width: 10),
+                                Icon(
+                                  Icons.person,
+                                  color: Colors.white,
+                                ),
+                                SizedBox(width: 15),
+                                Text(
+                                  "Dados Cadastrais",
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold),
+                                  textAlign: TextAlign.center,
+                                ),
+                              ],
+                            ),
+                          ),
+                          onTap: () {
+                            Navigator.pop(context);
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const DadosCadastrais(),
+                              ),
+                            );
+                          },
                         ),
                         const SizedBox(height: 15),
-                        SizedBox(
-                          width: double.infinity,
-                          child: TextButton(
-                              onPressed: () {
-                                Navigator.pop(context);
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            const PageViewPage()));
-                              },
-                              style: ButtonStyle(
-                                  backgroundColor:
-                                      MaterialStateProperty.all(Colors.blue),
-                                  shape: MaterialStateProperty.all(
-                                      RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(10)))),
-                              child: const Row(
-                                children: [
-                                  SizedBox(width: 15),
-                                  Icon(
-                                    Icons.pages_outlined,
-                                    color: Colors.white,
-                                  ),
-                                  SizedBox(width: 15),
-                                  Text(
-                                    "Page View",
-                                    style: TextStyle(color: Colors.white),
-                                    textAlign: TextAlign.center,
-                                  ),
-                                ],
-                              )),
+                        InkWell(
+                          child: Container(
+                            decoration: BoxDecoration(
+                                color: Colors.blue,
+                                borderRadius: BorderRadius.circular(10)),
+                            padding: const EdgeInsets.all(10.0),
+                            child: const Row(
+                              children: [
+                                SizedBox(width: 10),
+                                Icon(
+                                  Icons.pages_outlined,
+                                  color: Colors.white,
+                                ),
+                                SizedBox(width: 15),
+                                Text(
+                                  "Page View",
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold),
+                                  textAlign: TextAlign.center,
+                                ),
+                              ],
+                            ),
+                          ),
+                          onTap: () {
+                            Navigator.pop(context);
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        const PageViewPage()));
+                          },
                         ),
                         const SizedBox(height: 15),
-                        SizedBox(
-                          width: double.infinity,
-                          child: TextButton(
-                              onPressed: () {},
-                              style: ButtonStyle(
-                                  backgroundColor:
-                                      MaterialStateProperty.all(Colors.blue),
-                                  shape: MaterialStateProperty.all(
-                                      RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(10)))),
-                              child: const Row(
-                                children: [
-                                  SizedBox(width: 15),
-                                  Icon(
-                                    Icons.info,
-                                    color: Colors.white,
-                                  ),
-                                  SizedBox(width: 15),
-                                  Text(
-                                    "Termos de Uso",
-                                    style: TextStyle(color: Colors.white),
-                                    textAlign: TextAlign.center,
-                                  ),
-                                ],
-                              )),
+                        InkWell(
+                          child: Container(
+                            decoration: BoxDecoration(
+                                color: Colors.blue,
+                                borderRadius: BorderRadius.circular(10)),
+                            padding: const EdgeInsets.all(10.0),
+                            child: const Row(
+                              children: [
+                                SizedBox(width: 10),
+                                Icon(
+                                  Icons.info_outline,
+                                  color: Colors.white,
+                                ),
+                                SizedBox(width: 15),
+                                Text(
+                                  "Termos de Uso",
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold),
+                                  textAlign: TextAlign.center,
+                                ),
+                              ],
+                            ),
+                          ),
+                          onTap: () {
+                            showModalBottomSheet(
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(15)),
+                                context: context,
+                                builder: (BuildContext bc) {
+                                  return Center(
+                                    child: Container(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 20, vertical: 10),
+                                      child: const Column(
+                                        children: [
+                                          SizedBox(
+                                            height: 10,
+                                          ),
+                                          Text(
+                                            "Termos de Uso",
+                                            style: TextStyle(
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            height: 10,
+                                          ),
+                                          Text(
+                                            "O incentivo ao avanço tecnológico, assim como a hegemonia do ambiente político prepara-nos para enfrentar situações atípicas decorrentes das diversas correntes de pensamento. As experiências acumuladas demonstram que a percepção das dificuldades facilita a criação de todos os recursos funcionais envolvidos. Por conseguinte, a consulta aos diversos militantes oferece uma interessante oportunidade para verificação das formas de ação. No entanto, não podemos esquecer que a mobilidade dos capitais internacionais acarreta um processo de reformulação e modernização dos modos de operação convencionais.",
+                                            style: TextStyle(fontSize: 16),
+                                            textAlign: TextAlign.justify,
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  );
+                                });
+                          },
                         ),
                         const SizedBox(height: 15),
                         SizedBox(

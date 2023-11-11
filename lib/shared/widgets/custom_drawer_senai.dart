@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:projeto_flutter/pages/dio_pages.dart';
 import 'package:projeto_flutter/pages/future_builder.dart';
 import 'package:projeto_flutter/pages/historia_flutter.dart';
-import 'package:projeto_flutter/pages/login_page.dart';
 import 'package:projeto_flutter/pages/main_page.dart';
 import 'package:projeto_flutter/pages/segunda_tela.dart';
+import 'package:projeto_flutter/shared/widgets/alert_dialog_sair.dart';
 
 class CustomDrawerSenai extends StatelessWidget {
   const CustomDrawerSenai({super.key});
@@ -151,26 +151,27 @@ class CustomDrawerSenai extends StatelessWidget {
                         )),
                   ),
                   const SizedBox(height: 15),
-                  SizedBox(
-                    width: double.infinity,
-                    child: TextButton(
-                        onPressed: () {
-                          Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const LoginPage()));
-                        },
-                        style: ButtonStyle(
-                            backgroundColor:
-                                MaterialStateProperty.all(Colors.blue),
-                            shape: MaterialStateProperty.all(
-                                RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10)))),
-                        child: const Text(
-                          "Sair",
-                          style: TextStyle(color: Colors.white),
-                          textAlign: TextAlign.center,
-                        )),
+                  InkWell(
+                    child: Container(
+                      width: 300,
+                      decoration: BoxDecoration(
+                          color: Colors.blue,
+                          borderRadius: BorderRadius.circular(10)),
+                      padding: const EdgeInsets.all(9.0),
+                      child: const Text(
+                        "Sair",
+                        style: TextStyle(
+                            color: Colors.white, fontWeight: FontWeight.bold),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                    onTap: () {
+                      showDialog(
+                          context: context,
+                          builder: (BuildContext bc) {
+                            return const AlertDialogSair();
+                          });
+                    },
                   ),
                 ],
               ),

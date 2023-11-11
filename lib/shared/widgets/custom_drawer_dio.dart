@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:projeto_flutter/pages/dados_cadastrais.dart';
 import 'package:projeto_flutter/pages/main_page.dart';
 import 'package:projeto_flutter/pages/page_view.dart';
+import 'package:projeto_flutter/shared/widgets/alert_dialog_sair.dart';
 
 class CustomDrawerDio extends StatelessWidget {
   const CustomDrawerDio({super.key});
@@ -63,38 +64,39 @@ class CustomDrawerDio extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        SizedBox(
-                          width: double.infinity,
-                          child: TextButton(
-                              onPressed: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            const MainPage()));
-                              },
-                              style: ButtonStyle(
-                                  backgroundColor:
-                                      MaterialStateProperty.all(Colors.blue),
-                                  shape: MaterialStateProperty.all(
-                                      RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(10)))),
-                              child: const Row(
-                                children: [
-                                  SizedBox(width: 15),
-                                  Icon(
-                                    Icons.home,
-                                    color: Colors.white,
-                                  ),
-                                  SizedBox(width: 15),
-                                  Text(
-                                    "Tela Inicial",
-                                    style: TextStyle(color: Colors.white),
-                                    textAlign: TextAlign.center,
-                                  ),
-                                ],
-                              )),
+                        InkWell(
+                          child: Container(
+                            decoration: BoxDecoration(
+                                color: Colors.blue,
+                                borderRadius: BorderRadius.circular(10)),
+                            padding: const EdgeInsets.all(10.0),
+                            child: const Row(
+                              children: [
+                                SizedBox(width: 10),
+                                Icon(
+                                  Icons.home,
+                                  color: Colors.white,
+                                ),
+                                SizedBox(width: 15),
+                                Text(
+                                  "Tela Inicial",
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold),
+                                  textAlign: TextAlign.center,
+                                ),
+                              ],
+                            ),
+                          ),
+                          onTap: () {
+                            Navigator.pop(context);
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const MainPage(),
+                              ),
+                            );
+                          },
                         ),
                         const SizedBox(height: 15),
                         InkWell(
@@ -228,34 +230,66 @@ class CustomDrawerDio extends StatelessWidget {
                           },
                         ),
                         const SizedBox(height: 15),
-                        SizedBox(
-                          width: double.infinity,
-                          child: TextButton(
-                              onPressed: () {},
-                              style: ButtonStyle(
-                                  backgroundColor:
-                                      MaterialStateProperty.all(Colors.blue),
-                                  shape: MaterialStateProperty.all(
-                                      RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(10)))),
-                              child: const Row(
-                                children: [
-                                  SizedBox(width: 15),
-                                  Icon(
-                                    Icons.settings,
-                                    color: Colors.white,
-                                  ),
-                                  SizedBox(width: 15),
-                                  Text(
-                                    "Configurações",
-                                    style: TextStyle(color: Colors.white),
-                                    textAlign: TextAlign.center,
-                                  ),
-                                ],
-                              )),
+                        InkWell(
+                          child: Container(
+                            decoration: BoxDecoration(
+                                color: Colors.blue,
+                                borderRadius: BorderRadius.circular(10)),
+                            padding: const EdgeInsets.all(10.0),
+                            child: const Row(
+                              children: [
+                                SizedBox(width: 10),
+                                Icon(
+                                  Icons.settings,
+                                  color: Colors.white,
+                                ),
+                                SizedBox(width: 15),
+                                Text(
+                                  "Configurações",
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold),
+                                  textAlign: TextAlign.center,
+                                ),
+                              ],
+                            ),
+                          ),
+                          onTap: () {},
                         ),
                         const SizedBox(height: 15),
+                        InkWell(
+                          child: Container(
+                            decoration: BoxDecoration(
+                                color: Colors.blue,
+                                borderRadius: BorderRadius.circular(10)),
+                            padding: const EdgeInsets.all(10.0),
+                            child: const Row(
+                              children: [
+                                SizedBox(width: 10),
+                                Icon(
+                                  Icons.exit_to_app,
+                                  color: Colors.white,
+                                ),
+                                SizedBox(width: 15),
+                                Text(
+                                  "Sair",
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold),
+                                  textAlign: TextAlign.center,
+                                ),
+                              ],
+                            ),
+                          ),
+                          onTap: () {
+                            showDialog(
+                              context: context,
+                              builder: (BuildContext bc) {
+                                return const AlertDialogSair();
+                              },
+                            );
+                          },
+                        ),
                       ],
                     ),
                   ),

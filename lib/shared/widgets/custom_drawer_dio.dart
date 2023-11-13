@@ -46,7 +46,7 @@ class CustomDrawerDio extends StatelessWidget {
                   currentAccountPicture: CircleAvatar(
                       backgroundColor: Colors.transparent,
                       child: Image.network(
-                          "https://lp.dio.me/wp-content/uploads/2023/03/LOGO-DIO-COLOR.png")),
+                          "https://lp.dio.me/wp-content/uploads/2023/03/LOGO-DIO-COLOR.png",)),
                   accountName: const Text("Renan Clemonini",
                       style: TextStyle(color: Colors.white)),
                   accountEmail: const Text(

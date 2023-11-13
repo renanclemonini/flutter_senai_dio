@@ -7,10 +7,6 @@ class AlertDialogSair extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      // title: const Text(
-      //   "Deseja Realmente Sair?",
-      //   textAlign: TextAlign.center,
-      // ),
       shape: BeveledRectangleBorder(borderRadius: BorderRadius.circular(5)),
       content: const Wrap(
         children: [
@@ -20,40 +16,57 @@ class AlertDialogSair extends StatelessWidget {
               // const SizedBox(
               //   height: 15,
               // ),
-              Text(
-                "Deseja realmente sair?",
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "Deseja realmente sair?",
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  ),
+                ],
               )
             ],
           ),
         ],
       ),
       actions: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            TextButton(
+              style: ButtonStyle(
+                  padding: MaterialStateProperty.all(
+                    const EdgeInsets.symmetric(horizontal: 40, vertical: 10),
+                  ),
+                  backgroundColor:
+                      MaterialStateColor.resolveWith((states) => Colors.blue)),
+              onPressed: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const LoginPage(),
+                  ),
+                );
+              },
+              child: const Text(
+                "Sim",
+                style: TextStyle(color: Colors.white),
+              ),
+            ),
         TextButton(
           style: ButtonStyle(
-              padding: MaterialStateProperty.all(
-                const EdgeInsets.all(10),
-              ),
-              backgroundColor:
-                  MaterialStateColor.resolveWith((states) => Colors.blue)),
-          onPressed: () {
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const LoginPage(),
-              ),
-            );
-          },
-          child: const Text(
-            "Sim",
-            style: TextStyle(color: Colors.white),
-          ),
-        ),
-        TextButton(
+                  padding: MaterialStateProperty.all(
+                    const EdgeInsets.symmetric(horizontal: 40, vertical: 10),
+                  ),
+                  backgroundColor:
+                      MaterialStateColor.resolveWith((states) => Colors.red),),
           onPressed: () {
             Navigator.pop(context);
           },
-          child: const Text("Não"),
+          child: const Text("Não",
+                style: TextStyle(color: Colors.white)),
+        ),
+          ],
         ),
       ],
     );

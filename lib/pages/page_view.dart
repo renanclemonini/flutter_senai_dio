@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:projeto_flutter/pages/pagina_1.dart';
+import 'package:projeto_flutter/pages/card_page.dart';
 import 'package:projeto_flutter/pages/pagina_2.dart';
 import 'package:projeto_flutter/pages/pagina_3.dart';
 
@@ -18,7 +18,7 @@ class _PageViewPageState extends State<PageViewPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Page View"),
+        title: const Text("Main Page"),
       ),
       body: Column(
         children: [
@@ -30,7 +30,7 @@ class _PageViewPageState extends State<PageViewPage> {
                   posPagina = value;
                 });
               },
-              children: const [Pagina1(), Pagina2(), Pagina3()],
+              children: const [CardPage(), Pagina2(), Pagina3()],
             ),
           ),
           BottomNavigationBar(

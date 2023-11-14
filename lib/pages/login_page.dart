@@ -9,8 +9,8 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  var emailController = TextEditingController(text: "");
-  var senhaController = TextEditingController(text: "");
+  var emailController = TextEditingController(text: "rclemon93");
+  var senhaController = TextEditingController(text: "123");
   bool isObscureText = true;
 
   @override

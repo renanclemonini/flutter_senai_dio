@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:projeto_flutter/pages/carregando_page.dart';
 
 class FutureBuilderPage extends StatefulWidget {
   const FutureBuilderPage({super.key});
@@ -10,17 +11,23 @@ class FutureBuilderPage extends StatefulWidget {
 class _FutureBuilderPageState extends State<FutureBuilderPage> {
   Future<String> getImagem1() async =>
       await Future.delayed(const Duration(seconds: 7), () {
-        return "Olá mundo";
+        return "Imagem 1";
       });
+
+  Future<Image> getImagemUm() async {
+    await Future.delayed(const Duration(seconds: 10));
+    return Image.network(
+      "https://upload.wikimedia.org/wikipedia/commons/0/06/Google-apps-training-logo.png");
+  }
 
   Future<String> getImagem2() async =>
       await Future.delayed(const Duration(seconds: 3), () {
-        return 'Dados recebidos...';
+        return 'Imagem 2';
       });
 
   Future<String> getImagem3() async =>
       await Future.delayed(const Duration(seconds: 12), () {
-        return 'Dados recebidos...';
+        return 'Imagem 3';
       });
 
   @override
@@ -44,18 +51,11 @@ class _FutureBuilderPageState extends State<FutureBuilderPage> {
                           children: [
                             Image.network(
                                 "https://upload.wikimedia.org/wikipedia/commons/0/06/Google-apps-training-logo.png"),
-                            const Center(
-                              child: Text(
-                                "Imagem 1",
-                                style: TextStyle(fontSize: 20.0),
-                              ),
-                            ),
+                            Text(snapshot.requireData, style: const TextStyle(fontSize: 20.0))
                           ],
                         );
                       } else {
-                        return const Center(
-                          child: CircularProgressIndicator(),
-                        );
+                        return const CarregandoPage();
                       }
                     }),
               ),
@@ -72,18 +72,11 @@ class _FutureBuilderPageState extends State<FutureBuilderPage> {
                           children: [
                             Image.network(
                                 "https://upload.wikimedia.org/wikipedia/commons/c/c3/Google_Chrome_icon_and_wordmark_%282016%29.png"),
-                            const Center(
-                              child: Text(
-                                "Imagem 2",
-                                style: TextStyle(fontSize: 20.0),
-                              ),
-                            ),
+                            Text(snapshot.requireData, style: const TextStyle(fontSize: 20.0))
                           ],
                         );
                       } else {
-                        return const Center(
-                          child: CircularProgressIndicator(),
-                        );
+                        return const CarregandoPage();
                       }
                     }),
               ),
@@ -103,18 +96,11 @@ class _FutureBuilderPageState extends State<FutureBuilderPage> {
                             const SizedBox(
                               height: 10,
                             ),
-                            const Center(
-                              child: Text(
-                                "Imagem 3",
-                                style: TextStyle(fontSize: 20.0),
-                              ),
-                            ),
+                            Text(snapshot.requireData, style: const TextStyle(fontSize: 20.0))
                           ],
                         );
                       } else {
-                        return const Center(
-                          child: CircularProgressIndicator(),
-                        );
+                        return const CarregandoPage();
                       }
                     }),
               ),

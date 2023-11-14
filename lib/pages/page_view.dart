@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:projeto_flutter/pages/card_page.dart';
-import 'package:projeto_flutter/pages/pagina_2.dart';
-import 'package:projeto_flutter/pages/pagina_3.dart';
+import 'package:projeto_flutter/pages/image_assets.dart';
+import 'package:projeto_flutter/pages/list_view_h.dart';
+import 'package:projeto_flutter/pages/list_view_horizontal.dart';
 
 class PageViewPage extends StatefulWidget {
   const PageViewPage({super.key});
@@ -30,7 +31,12 @@ class _PageViewPageState extends State<PageViewPage> {
                   posPagina = value;
                 });
               },
-              children: const [CardPage(), Pagina2(), Pagina3()],
+              children: const [
+                CardPage(), 
+                ImageAssets(), 
+                ListViewHPage(),
+                ListViewHorizontal(),  
+              ],
             ),
           ),
           BottomNavigationBar(
@@ -41,9 +47,10 @@ class _PageViewPageState extends State<PageViewPage> {
               },
               currentIndex: posPagina,
               items: const [
-                BottomNavigationBarItem(label: "Pg 1", icon: Icon(Icons.home)),
-                BottomNavigationBarItem(label: "Pg 2", icon: Icon(Icons.add)),
-                BottomNavigationBarItem(label: "Pg 3", icon: Icon(Icons.person))
+                BottomNavigationBarItem(label: "Card", icon: Icon(Icons.home)),
+                BottomNavigationBarItem(label: "Images", icon: Icon(Icons.add)),
+                BottomNavigationBarItem(label: "List View", icon: Icon(Icons.person)),
+                BottomNavigationBarItem(label: "List View", icon: Icon(Icons.person_add))
               ])
         ],
       ),

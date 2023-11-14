@@ -23,7 +23,9 @@ class _ListViewHPageState extends State<ListViewHPage> {
           isThreeLine: true,
           trailing: PopupMenuButton<String>(
             onSelected: (menu) {
-              print(menu);
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text("Opção selecionada: $menu", style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),))
+              );
             },
             itemBuilder: (BuildContext bc) {
               return <PopupMenuEntry<String>> [

@@ -18,8 +18,8 @@ class _ListViewHPageState extends State<ListViewHPage> {
         const SizedBox(height: 50,),
         ListTile(
           leading: Image.network("https://media.licdn.com/dms/image/D4D03AQEsOd6pb8CL1w/profile-displayphoto-shrink_400_400/0/1696243281187?e=1701907200&v=beta&t=F74aMGGiIjQnyomrjzmws-QHMVbRyFNb0uRV4xVS-jw"),
-          title: Text("Renan Clemonini"),
-          subtitle: Text("rclemon93@gmail.com\n71 99633-3313"),
+          title: const Text("Renan Clemonini"),
+          subtitle: const Text("rclemon93@gmail.com\n71 99633-3313"),
           isThreeLine: true,
           trailing: PopupMenuButton<String>(
             onSelected: (menu) {

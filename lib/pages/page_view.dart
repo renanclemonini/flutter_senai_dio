@@ -35,11 +35,12 @@ class _PageViewPageState extends State<PageViewPage> {
                 CardPage(), 
                 ImageAssets(), 
                 ListViewHPage(),
-                ListViewHorizontal(),  
+                ListViewHorizontalPage(),  
               ],
             ),
           ),
           BottomNavigationBar(
+            type: BottomNavigationBarType.fixed,
               onTap: (value) {
                 setState(() {
                   controller.jumpToPage(value);
@@ -49,8 +50,8 @@ class _PageViewPageState extends State<PageViewPage> {
               items: const [
                 BottomNavigationBarItem(label: "Card", icon: Icon(Icons.home)),
                 BottomNavigationBarItem(label: "Images", icon: Icon(Icons.add)),
-                BottomNavigationBarItem(label: "List View", icon: Icon(Icons.person)),
-                BottomNavigationBarItem(label: "List View", icon: Icon(Icons.person_add))
+                BottomNavigationBarItem(label: "List V", icon: Icon(Icons.person)),
+                BottomNavigationBarItem(label: "List H", icon: Icon(Icons.person_add))
               ])
         ],
       ),

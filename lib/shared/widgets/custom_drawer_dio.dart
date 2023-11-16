@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:projeto_flutter/pages/dados_cadastrais.dart';
 import 'package:projeto_flutter/pages/main_page.dart';
 import 'package:projeto_flutter/pages/page_view.dart';
+import 'package:projeto_flutter/pages/tarefa_page.dart';
 import 'package:projeto_flutter/shared/widgets/alert_dialog_sair.dart';
 
 class CustomDrawerDio extends StatelessWidget {
@@ -129,6 +130,41 @@ class CustomDrawerDio extends StatelessWidget {
                               context,
                               MaterialPageRoute(
                                 builder: (context) => const DadosCadastrais(),
+                              ),
+                            );
+                          },
+                        ),
+                        const SizedBox(height: 15),
+                        InkWell(
+                          child: Container(
+                            decoration: BoxDecoration(
+                                color: Colors.blue,
+                                borderRadius: BorderRadius.circular(10)),
+                            padding: const EdgeInsets.all(10.0),
+                            child: const Row(
+                              children: [
+                                SizedBox(width: 10),
+                                Icon(
+                                  Icons.list,
+                                  color: Colors.white,
+                                ),
+                                SizedBox(width: 15),
+                                Text(
+                                  "Tarefas",
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold),
+                                  textAlign: TextAlign.center,
+                                ),
+                              ],
+                            ),
+                          ),
+                          onTap: () {
+                            Navigator.pop(context);
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const TarefaPage(),
                               ),
                             );
                           },

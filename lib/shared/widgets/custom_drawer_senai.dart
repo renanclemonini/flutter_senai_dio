@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:projeto_flutter/pages/busca_cep.dart';
 import 'package:projeto_flutter/pages/dio_pages.dart';
 import 'package:projeto_flutter/pages/future_builder.dart';
 import 'package:projeto_flutter/pages/historia_flutter.dart';
@@ -123,6 +124,29 @@ class CustomDrawerSenai extends StatelessWidget {
                                     borderRadius: BorderRadius.circular(10)))),
                         child: const Text(
                           "Future Builder",
+                          style: TextStyle(color: Colors.white),
+                          textAlign: TextAlign.center,
+                        )),
+                  ),
+                  const SizedBox(height: 15),
+                  SizedBox(
+                    width: double.infinity,
+                    child: TextButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const BuscaCepPage()));
+                        },
+                        style: ButtonStyle(
+                            backgroundColor:
+                                MaterialStateProperty.all(Colors.blue),
+                            shape: MaterialStateProperty.all(
+                                RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10)))),
+                        child: const Text(
+                          "Busca CEP",
                           style: TextStyle(color: Colors.white),
                           textAlign: TextAlign.center,
                         )),

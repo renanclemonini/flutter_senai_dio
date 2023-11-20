@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:projeto_flutter/controller/home_controller.dart';
+import 'package:projeto_flutter/shared/widgets/card_location.dart';
 
 class BuscaCepPage extends StatefulWidget {
   const BuscaCepPage({super.key});
@@ -12,12 +13,6 @@ final TextEditingController _cepController = TextEditingController();
 final HomeController homeController = HomeController();
 
 class _BuscaCepPageState extends State<BuscaCepPage> {
-  bool carregando = true;
-
-  String resultado = "Seu Cep irá aparecer aqui";
-
-  void buscaCep() {}
-
   @override
   void initState() {
     homeController.addListener(() {
@@ -40,48 +35,45 @@ class _BuscaCepPageState extends State<BuscaCepPage> {
               const SizedBox(
                 height: 50,
               ),
-              TextField(
-                keyboardType: TextInputType.number,
-                decoration: const InputDecoration(
-                  labelText: "Digite CEP para consulta",
-                  labelStyle: TextStyle(fontWeight: FontWeight.bold),
-                ),
+              TextFormField(
                 controller: _cepController,
-                textAlign: TextAlign.center,
+                keyboardType: TextInputType.number,
+                decoration: InputDecoration(
+                  label: const Text("Digite aqui o CEP"),
+                  suffixIcon: IconButton(
+                    onPressed: () {
+                      homeController.clear();
+                      _cepController.text = "";
+                    },
+                    icon: const Icon(Icons.close_outlined),
+                  )
+                ),
               ),
               const SizedBox(
                 height: 30,
               ),
-              InkWell(
-                onTap: buscaCep,
-                child: Container(
-                  decoration: BoxDecoration(
-                      color: Colors.blue,
-                      borderRadius: BorderRadius.circular(10)),
-                  padding: const EdgeInsets.all(10.0),
-                  child: const Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        "Buscar",
-                        style: TextStyle(
-                            color: Colors.white, fontWeight: FontWeight.bold),
-                        textAlign: TextAlign.center,
-                      ),
-                    ],
-                  ),
-                ),
+              ElevatedButton(
+                onPressed: () {
+                  if(_cepController.text.length == 8) {
+                    homeController.buscaEndereco(cep: _cepController.text);
+                  } else {
+                    const snackBar = SnackBar(content: Text("CEP deve ter 8 números"));
+
+                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                  }
+                }, 
+                style: ButtonStyle(padding: MaterialStateProperty.all(const EdgeInsets.symmetric(horizontal: 100, vertical: 10))),
+                child: const Text("Consultar"),
               ),
-              Container(
-                margin: const EdgeInsets.symmetric(vertical: 30),
-                child: Text(
-                  resultado,
-                  style: const TextStyle(
-                    fontWeight: FontWeight.w600,
-                    fontSize: 18,
-                  ),
-                ),
+              const SizedBox(height: 30,),
+              Visibility(
+                visible: homeController.isLoading.value,
+                child: const CircularProgressIndicator(),
               ),
+              Visibility(
+                visible: !homeController.isLoading.value && homeController.endereco.value != null,
+                child: const CardLocationWidget(),
+              )
             ],
           ),
         ),

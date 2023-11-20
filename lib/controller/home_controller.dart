@@ -23,4 +23,10 @@ class HomeController extends ChangeNotifier {
       notifyListeners(); 
     }
   }
+
+  void clear() {
+    endereco.value = null;
+    isLoading.value = false;
+    notifyListeners();
+  }
 }

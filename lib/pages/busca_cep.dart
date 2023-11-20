@@ -1,6 +1,7 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
-import 'package:projeto_flutter/controller/home_controller.dart';
-import 'package:projeto_flutter/shared/widgets/card_location.dart';
+import 'package:flutter_cep2/flutter_cep2.dart';
 
 class BuscaCepPage extends StatefulWidget {
   const BuscaCepPage({super.key});
@@ -9,75 +10,112 @@ class BuscaCepPage extends StatefulWidget {
   State<BuscaCepPage> createState() => _BuscaCepPageState();
 }
 
-final TextEditingController _cepController = TextEditingController();
-final HomeController homeController = HomeController();
-
 class _BuscaCepPageState extends State<BuscaCepPage> {
-  @override
-  void initState() {
-    homeController.addListener(() {
-      setState(() {});
-    });
-    super.initState();
-  }
+  var cepController = TextEditingController();
+
+  bool buscaRealizada = false;
+
+  var cep = TextEditingController();
+  var logradouro = TextEditingController();
+  var complemento = TextEditingController();
+  var bairro = TextEditingController();
+  var localidade = TextEditingController();
+  var uf = TextEditingController();
+  var ibge = TextEditingController();
+  var gia = TextEditingController();
+  var ddd = TextEditingController();
+  var siafi = TextEditingController();
+
+  var erro = "";
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Busca CEP"),
+        title: const Text("Busca de CEP"),
       ),
-      body: Center(
-        child: Container(
-          margin: const EdgeInsets.symmetric(horizontal: 30),
-          child: Column(
-            children: <Widget>[
-              const SizedBox(
-                height: 50,
-              ),
-              TextFormField(
-                controller: _cepController,
-                keyboardType: TextInputType.number,
-                decoration: InputDecoration(
-                  label: const Text("Digite aqui o CEP"),
-                  suffixIcon: IconButton(
-                    onPressed: () {
-                      homeController.clear();
-                      _cepController.text = "";
-                    },
-                    icon: const Icon(Icons.close_outlined),
-                  )
+      body: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
+            child: TextFormField(
+              controller: cepController,
+              keyboardType: TextInputType.number,
+              decoration:  InputDecoration(
+                label: const Text("Digite CEP aqui"),
+                suffixIcon: IconButton(
+                  onPressed: () {
+                    cepController.text = "";
+                    cep.text = "";
+                    logradouro.text = "";
+                    bairro.text = "";
+                    uf.text = "";
+                    setState(() {
+                      buscaRealizada = false;
+                    });
+                  }, 
+                  icon: const Icon(Icons.close_outlined),
                 ),
-              ),
-              const SizedBox(
-                height: 30,
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  if(_cepController.text.length == 8) {
-                    homeController.buscaEndereco(cep: _cepController.text);
-                  } else {
-                    const snackBar = SnackBar(content: Text("CEP deve ter 8 números"));
-
-                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                  }
-                }, 
-                style: ButtonStyle(padding: MaterialStateProperty.all(const EdgeInsets.symmetric(horizontal: 100, vertical: 10))),
-                child: const Text("Consultar"),
-              ),
-              const SizedBox(height: 30,),
-              Visibility(
-                visible: homeController.isLoading.value,
-                child: const CircularProgressIndicator(),
-              ),
-              Visibility(
-                visible: !homeController.isLoading.value && homeController.endereco.value != null,
-                child: const CardLocationWidget(),
               )
-            ],
+              ),
           ),
-        ),
-      ),
+          ElevatedButton(
+            onPressed: () async {
+              var buscaCep = flutter_cep2();
+              try {
+                if(cepController.text.length == 8) {
+                  var result = await buscaCep.search(cepController.text);
+                  cep.text = result.cep;
+                  logradouro.text = result.logradouro;
+                  complemento.text = result.complemento!;
+                  bairro.text = result.bairro;
+                  localidade.text = result.localidade;
+                  uf.text = result.uf;
+                  ibge.text = result.ibge;
+                  ddd.text = result.ddd!;
+                  // siafi.text = result.siaf!;
+                  setState(() {
+                    buscaRealizada = true;
+                  });
+                } else {
+                  const snackBar = SnackBar(content: Text("CEP deve ter 8 números"));
+                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                } 
+              } catch (e) {
+                log(e.toString());
+                if (e.toString() == "Exception: Invalid number CEP") {
+                  // ignore: use_build_context_synchronously
+                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("CEP Inválido")));
+                }
+                
+              }
+            }, 
+            child: const Text("Consultar"),
+          ),
+          Visibility(
+            visible: buscaRealizada,
+            child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
+            width: double.infinity,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text("CEP: ${cep.text}"),
+                Text("Logradouro: ${logradouro.text}"),
+                Text("Complemento: ${complemento.text}"),
+                Text("Bairro: ${bairro.text}"),
+                Text("Cidade: ${localidade.text}"),
+                Text("UF: ${uf.text}"),
+                Text("IBGE: ${ibge.text}"),
+                Text("GIA: ${gia.text}"),
+                Text("DDD: ${ddd.text}"),
+              ],
+            ),
+          ),
+          )
+        ],
+      )
     );
   }
 }

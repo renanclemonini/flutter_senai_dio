@@ -53,8 +53,9 @@ class _TarefaPageState extends State<TarefaPage> {
                   onPressed: () async {
                     await tarefaRepository.addTarefas(Tarefa(descricaoController.text, false));
                     debugPrint(tarefaRepository.listarTarefas().toString());
-                    Navigator.pop(context);
-                    setState(() {});
+                    setState(() {
+                      Navigator.pop(context);
+                    });
                   }, 
                   child: const Text("Salvar"),
                 ),

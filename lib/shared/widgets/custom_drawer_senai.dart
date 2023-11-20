@@ -146,7 +146,7 @@ class CustomDrawerSenai extends StatelessWidget {
                                 RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(10)))),
                         child: const Text(
-                          "Busca CEP",
+                          "Busca de CEP",
                           style: TextStyle(color: Colors.white),
                           textAlign: TextAlign.center,
                         )),

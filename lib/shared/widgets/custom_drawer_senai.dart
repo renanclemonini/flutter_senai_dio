@@ -5,6 +5,7 @@ import 'package:projeto_flutter/pages/future_builder.dart';
 import 'package:projeto_flutter/pages/historia_flutter.dart';
 import 'package:projeto_flutter/pages/main_page.dart';
 import 'package:projeto_flutter/pages/segunda_tela.dart';
+import 'package:projeto_flutter/pages/teste_api.dart';
 import 'package:projeto_flutter/shared/widgets/alert_dialog_sair.dart';
 
 class CustomDrawerSenai extends StatelessWidget {
@@ -147,6 +148,29 @@ class CustomDrawerSenai extends StatelessWidget {
                                     borderRadius: BorderRadius.circular(10)))),
                         child: const Text(
                           "Busca de CEP",
+                          style: TextStyle(color: Colors.white),
+                          textAlign: TextAlign.center,
+                        )),
+                  ),
+                  const SizedBox(height: 15),
+                  SizedBox(
+                    width: double.infinity,
+                    child: TextButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const TesteApiPage()));
+                        },
+                        style: ButtonStyle(
+                            backgroundColor:
+                                MaterialStateProperty.all(Colors.blue),
+                            shape: MaterialStateProperty.all(
+                                RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10)))),
+                        child: const Text(
+                          "Teste API",
                           style: TextStyle(color: Colors.white),
                           textAlign: TextAlign.center,
                         )),
